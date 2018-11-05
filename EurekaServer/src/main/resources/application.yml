@@ -1,0 +1,31 @@
+param:
+  server:
+    port:
+  eureka:
+    serviceUrl:
+ 
+spring:
+  #应用名称
+  application:
+      name: EurekaServer
+  profiles:
+    active: ${RUN_ENV:dev}
+ 
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+#是否向服务注册中心注册自己
+    registerWithEureka: false
+#是否检索服务
+    fetchRegistry: false
+    serviceUrl:
+#服务注册中心的配置内容，指定服务注册中心的位置    
+      defaultZone: ${param.eureka.serviceUrl}
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+    enable-self-preservation: false
+
+server:
+  #端口
+  port: ${param.server.port}
